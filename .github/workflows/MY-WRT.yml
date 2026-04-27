@@ -91,6 +91,10 @@ jobs:
         CONFIG_PACKAGE_nftables-json=y
         CONFIG_PACKAGE_iptables-nft=y
         CONFIG_PACKAGE_ipset=y
+        CONFIG_PACKAGE_gawk=y
+        CONFIG_PACKAGE_grep=y
+        CONFIG_PACKAGE_sed=y
+        CONFIG_PACKAGE_coreutils-sort=y
         ${{inputs.PACKAGE}}
       # 是否只输出配置文件
       WRT_TEST: ${{inputs.TEST}}
