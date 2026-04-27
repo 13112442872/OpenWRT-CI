@@ -1,0 +1,73 @@
+# SPDX-License-Identifier: MIT
+
+name: MY-WRT
+
+on:
+  workflow_run:
+    workflows: ["Auto-Clean"]
+    types:
+      - completed
+  workflow_dispatch:
+    inputs:
+      PACKAGE:
+        description: 'Append extra OpenWrt config lines, separated by newlines.'
+        required: false
+        type: string
+      TEST:
+        description: 'Only output config files, do not compile firmware.'
+        default: 'false'
+        required: false
+        type: boolean
+
+permissions: write-all
+
+jobs:
+  config:
+    name: ${{matrix.CONFIG}}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - CONFIG: MY-IPQ60XX-WIFI-YES
+            SOURCE: VIKINGYFY/immortalwrt
+            BRANCH: main
+          - CONFIG: MY-IPQ60XX-WIFI-NO
+            SOURCE: VIKINGYFY/immortalwrt
+            BRANCH: main
+          - CONFIG: MY-X86
+            SOURCE: VIKINGYFY/immortalwrt
+            BRANCH: owrt
+
+    uses: ./.github/workflows/WRT-CORE.yml
+    with:
+      WRT_CONFIG: ${{matrix.CONFIG}}
+      WRT_THEME: argon
+      WRT_NAME: OWRT
+      WRT_SSID: OWRT
+      WRT_WORD: 12345678
+      WRT_IP: 192.168.10.1
+      WRT_PW: none
+      WRT_REPO: https://github.com/${{matrix.SOURCE}}.git
+      WRT_BRANCH: ${{matrix.BRANCH}}
+      WRT_SOURCE: ${{matrix.SOURCE}}
+      WRT_PACKAGE: |
+        CONFIG_PACKAGE_luci-app-aurora-config=n
+        CONFIG_PACKAGE_luci-theme-aurora=n
+        CONFIG_PACKAGE_luci-app-gecoosac=n
+        CONFIG_PACKAGE_luci-app-tailscale=n
+        CONFIG_PACKAGE_luci-app-homeproxy=n
+        CONFIG_PACKAGE_luci-app-argon-config=y
+        CONFIG_PACKAGE_luci-theme-argon=y
+        CONFIG_PACKAGE_luci-app-adblock-fast=y
+        CONFIG_PACKAGE_luci-app-frpc=y
+        CONFIG_PACKAGE_luci-app-frps=y
+        CONFIG_PACKAGE_luci-app-samba4=y
+        CONFIG_PACKAGE_luci-app-rustdesk-server=y
+        CONFIG_PACKAGE_bash=y
+        CONFIG_PACKAGE_wget-ssl=y
+        CONFIG_PACKAGE_ca-bundle=y
+        CONFIG_PACKAGE_nftables-json=y
+        CONFIG_PACKAGE_iptables-nft=y
+        CONFIG_PACKAGE_ipset=y
+        ${{inputs.PACKAGE}}
+      WRT_TEST: ${{inputs.TEST}}
