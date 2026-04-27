@@ -30,10 +30,6 @@ CONFIG_TARGET_ROOTFS_EXT4FS=n
 # Kernel modules
 CONFIG_PACKAGE_kmod-e1000=y
 CONFIG_PACKAGE_kmod-e1000e=y
-CONFIG_PACKAGE_kmod-hyperv-balloon=y
-CONFIG_PACKAGE_kmod-hyperv-net-vsc=y
-CONFIG_PACKAGE_kmod-hyperv-storage=y
-CONFIG_PACKAGE_kmod-hyperv-util=y
 CONFIG_PACKAGE_kmod-hwmon-w83627ehf=y
 CONFIG_PACKAGE_kmod-hwmon-w83627hf=y
 CONFIG_PACKAGE_kmod-scsi-core=y
