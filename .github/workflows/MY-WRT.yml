@@ -5,10 +5,10 @@ name: 自用固件编译
 
 on:
   # 自动编译：Auto-Clean 清理完成后自动运行
-  workflow_run:
-    workflows: ["Auto-Clean"]
-    types:
-      - completed
+  # workflow_run:
+  #   workflows: ["Auto-Clean"]
+  #   types:
+  #     - completed
 
   # 手动编译：可以选择测试模式，也可以临时追加插件或内核配置
   workflow_dispatch:
@@ -84,6 +84,8 @@ jobs:
         CONFIG_PACKAGE_luci-app-smartdns=y
         CONFIG_PACKAGE_luci-app-frpc=y
         CONFIG_PACKAGE_luci-app-frps=y
+        CONFIG_PACKAGE_luci-app-lucky=y
+        CONFIG_PACKAGE_lucky=y
         CONFIG_PACKAGE_luci-app-samba4=y
         CONFIG_PACKAGE_luci-app-rustdesk-server=y
         CONFIG_PACKAGE_smartdns=y
