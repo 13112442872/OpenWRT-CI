@@ -84,6 +84,10 @@ jobs:
         CONFIG_PACKAGE_luci-app-smartdns=y
         CONFIG_PACKAGE_luci-app-frpc=y
         CONFIG_PACKAGE_luci-app-frps=y
+        CONFIG_PACKAGE_luci-app-turboacc=y
+        CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_OFFLOADING=y
+        CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_BBR_CCA=y
+        CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_NFT_FULLCONE=y
         CONFIG_PACKAGE_luci-app-lucky=y
         CONFIG_PACKAGE_lucky=y
         CONFIG_PACKAGE_luci-app-samba4=y

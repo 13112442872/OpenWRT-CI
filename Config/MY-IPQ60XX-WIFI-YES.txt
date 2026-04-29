@@ -7,5 +7,7 @@ CONFIG_TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_link_nn6000-v1=y
 CONFIG_TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_link_nn6000-v2=y
 CONFIG_TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_jdcloud_re-ss-01=y
 
-# Custom packages and kernel modules can be appended below.
+# QCA NSS / ECM acceleration
+CONFIG_PACKAGE_kmod-qca-nss-ecm=y
 
+# Custom packages and kernel modules can be appended below.
